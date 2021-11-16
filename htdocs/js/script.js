@@ -48,52 +48,46 @@ function animateBall(){
 	if (bouncing === null) {
 	bouncing = setInterval(function(){
 		
-		var dir = random(1,2) - 1; // random movement along x or y axis
-		var angle = random(1,10); // momentum of the random movement
-		$ball.css("background-color", randomColor()); // changes color every interval
+		var xangle = random(1,5); // momentum of the random movement
+		var yangle = random(1,5);
 
-		
-	switch (dir) {
-		
-		case 0: // x - direction
-		for (var i =0; i<angle; i++) {
+		for (var i =0; i<xangle; i++) {
 	if (xdir === "right") {
-				$ball.css({
-					left: "+=1px"
-				});
+				$ball.animate({
+					left: "+=5"
+				},2000, "linear");
+				$ball.finish();
 			if (parseInt($ball.css("left")) + parseInt($ball.css("width")) >= 500) { xdir = "left";}
 	}
 	
 	if (xdir === "left"){
-				$ball.css({
-					left: "-=1px"
-				});
+				$ball.animate({
+					left: "-=5"
+				},2000, "linear");
+				$ball.finish();
 		if (parseInt($ball.css("left")) <= 0) { xdir = "right";}		
 		}
 		}
-		break;
+		//break;
 		
-		case 1: //y - direction
-		for (var j =0; j < angle; j++) {
+	//	case 1: //y - direction
+		for (var j =0; j < yangle; j++) {
 		if (ydir === "down"){
-				$ball.css({
-					top: "+=1px"
-				});
+				$ball.animate({
+					top: "+=5"
+				},2000, "linear");
+				$ball.finish();
 		if (parseInt($ball.css("top")) + parseInt($ball.css("height")) >= 500) { ydir = "up";}
 		};
 		
 		if (ydir === "up"){
-				$ball.css({
-					top: "-=1px"
-				});
+				$ball.animate({
+					top: "-=5"
+				},2000, "linear");
+				$ball.finish();
 		if (parseInt($ball.css("top")) === 0) { ydir = "down";}
 		};
 		}
-		break;
-		
-		default:
-
-	}
 	}, 20) }
 	else {
 		clearInterval(bouncing);
